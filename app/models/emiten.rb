@@ -5,4 +5,8 @@ class Emiten
   field :name, type: String
   field :eipo_id, type: Integer
   field :link, type: String
+  field :status, type: String
+
+
+  validates_uniqueness_of :code, :eipo_id
 end
