@@ -23,7 +23,13 @@ class IndexParser
   # end
 
   def parse_index_data
-    total_loop = @html_data.size-2
+    total_data = @html_data.size
+    total_loop = if total_data == 4
+      1
+    else
+      total_data - 2
+    end
+    puts total_loop
     for i in (0..total_loop) do
       next if i.odd? || i >= 22
       @data << {
