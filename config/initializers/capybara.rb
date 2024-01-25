@@ -6,7 +6,9 @@ Capybara.register_driver :selenium do |app|
 #   end
 #   Capybara::Selenium::Driver.new(app, browser: :chrome, options: browser_options)
 # end
-  Capybara::Selenium::Driver.new(app, browser: :chrome)
+  client = Selenium::WebDriver::Remote::Http::Default.new
+  client.read_timeout = 120 # seconds
+  Capybara::Selenium::Driver.new(app, browser: :chrome, http_client: client)
   #options: Selenium::WebDriver::Chrome::Options.new(args: %w[headless disable-gpu]))
 end
 Capybara.javascript_driver = :chrome
