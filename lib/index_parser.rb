@@ -1,7 +1,7 @@
 class IndexParser
 
   def initialize(html_data)
-   @data = []
+    @data = []
     @html_data = html_data.search("#ipo-list .list-view .row").children
   end
 

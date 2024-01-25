@@ -43,3 +43,4 @@ gem "mongoid", "8.1.4"
 gem "capybara"
 gem "selenium-webdriver"
 gem "typhoeus"
+gem 'pry', '~> 0.14.2'
