@@ -41,3 +41,20 @@ request = Typhoeus::Request.new(
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
   }
 )
+
+
+request = Typhoeus::Request.new(
+  "https://e-ipo.co.id/en",
+  method: :get,
+  headers: {
+    "Cookie": "__cf_bm=nTw8xHdXRUPac763mgo0xJvnmzD1KSkcJSM.bLZiA.k-1706047777-1-ASXfNpPk3oeTxNFESJIFr/lUmmhWHdsG3SS4tKcQBlIbQZr19nBz6o/HeN4IDzpLOrvZp/I7T7HU28uLTEJYfjM=; _language=c7aa70049750bfdc4cdd7484aa408831380d464237285f5645b991b7bf4834b2a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_language%22%3Bi%3A1%3Bs%3A2%3A%22en%22%3B%7D; ebb-frontend=id0evon2hnubovargf0ad198rb",
+
+    "User-Agent": "PostmanRuntime/7.36.1"
+  }
+)
+
+
+
+
+
+_language=c7aa70049750bfdc4cdd7484aa408831380d464237285f5645b991b7bf4834b2a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_language%22%3Bi%3A1%3Bs%3A2%3A%22en%22%3B%7D; ebb-frontend=opr711g3hpul84e4hi5l6j777j; __cf_bm=ZlVv0VIeMwp4BLAUMUZmy9mFa.XSLO9uhyLNVES8Jx8-1706048248-1-AR/WpOndhiQ9HPVDrnaVAry7lLodVQ44M1kY+Cff1ZotSIxDLkcGG1z7B1VNztQxU9D/zx8CUUiSKqffzLQyiTk=

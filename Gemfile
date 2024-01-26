@@ -42,4 +42,5 @@ end
 gem "mongoid", "8.1.4"
 gem "capybara"
 gem "selenium-webdriver"
-gem "typhoeus"
+gem 'kaminari-mongoid'
+gem 'jbuilder'

@@ -1,8 +1,13 @@
 class Scrapper
 
   def initialize(url)
-    $browser.visit(url)
-    @doc = Nokogiri::HTML($driver.page_source)
+
+
+    @worker = Worker.new.scrape("#{Rails.application.config.eipo_base_url}#{url}")
+  end
+
+  def html_data
+    @html_data = Nokogiri::HTML($driver.page_source)
   end
 
 end

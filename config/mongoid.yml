@@ -189,7 +189,7 @@ production:
     default:
       database: eipo_test
       hosts:
-        - localhost:27017
+        - 89.116.32.108:27017
       options:
         read:
           mode: :primary
