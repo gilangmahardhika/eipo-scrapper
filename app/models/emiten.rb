@@ -19,7 +19,7 @@ class Emiten
 
   validates_uniqueness_of :code, :eipo_id
 
-  def self.find_scrapped_link
-    where(:status.in => SCRAPPED_STATUS ).map(&:link)
+  def self.uncompleted
+    where(:status.in => SCRAPPED_STATUS)
   end
 end
