@@ -5,8 +5,9 @@ class DetailPage < Scrapper
 
   def insert_to_db(data)
     emiten = Emiten.find_by(code: data[:code])
-    if emiten.present?
-      emiten.detail.upsert(data)
+    if emiten.detail.present?
+      emiten.detail.update(data)
+      emiten.touch
     else
       emiten.build_detail(data).save
     end

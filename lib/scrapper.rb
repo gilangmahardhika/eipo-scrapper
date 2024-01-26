@@ -1,7 +1,9 @@
 class Scrapper
 
   def initialize(url)
-    @worker = Worker.new.scrape(url)
+
+
+    @worker = Worker.new.scrape("#{Rails.application.config.eipo_base_url}#{url}")
   end
 
   def html_data

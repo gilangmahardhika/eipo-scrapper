@@ -5,23 +5,6 @@ class IndexParser
     @html_data = html_data.search("#ipo-list .list-view .row").children
   end
 
-  # def parse_index_data
-  #   total_data = @html_data.size
-  #   for i in (0..total_data) do
-  #   @html_data.each.with_index do |div, index|
-  #     if index.even? && index <= 22
-  #       @data << {
-  #         name: name(div),
-  #         code: code(div),
-  #         eipo_id: eipo_id(div),
-  #         link: link(div),
-  #         status: status(div),
-  #       }
-  #     end
-  #   end
-  #   @data
-  # end
-
   def parse_index_data
     total_data = @html_data.size
     total_loop = if total_data == 4
@@ -38,6 +21,7 @@ class IndexParser
         eipo_id: eipo_id(@html_data[i]),
         link: link(@html_data[i]),
         status: status(@html_data[i]),
+        updated_at: Time.now
       }
     end
     @data
@@ -45,7 +29,7 @@ class IndexParser
 
   private
     def name(div)
-      div.search('h5.nobottommargin').first.text
+      div.search('h5.nobottommargin').first.text[0...-6]
     end
 
     def code(div)

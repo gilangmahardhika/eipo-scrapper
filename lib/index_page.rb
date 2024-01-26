@@ -6,8 +6,13 @@ class IndexPage < Scrapper
 
   def insert_to_db(data)
     data.each do |emiten|
-      e = Emiten.new(emiten)
-      e.upsert
+      e = Emiten.where(code: emiten[:code]).first
+      if e.present?
+        e.update(emiten)
+        e.touch
+      else
+        Emiten.new(emiten).save
+      end
     end
   end
 
