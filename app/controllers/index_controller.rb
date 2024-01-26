@@ -1,7 +1,11 @@
 class IndexController < ApplicationController
   before_action :upcase_code, only: :show
   def index
-    @emitens = Emiten.all.page(params[:page] || 1).per(10)
+    @emitens = if params[:search].present?
+      Emiten.where(code: params[:search].upcase)
+    else
+      Emiten.all.page(params[:page] || 1).per(10)
+    end
   end
 
   def show

@@ -4,10 +4,13 @@ json.data do
     json.code   emiten.code
     json.name   emiten.name
     json.status emiten.status
+    json.final_price emiten.detail.offering_price
     json.sector emiten.detail.sector
     json.sector emiten.detail.sector
     json.sub_sector emiten.detail.sub_sector
     json.line_of_business emiten.detail.line_of_business
+    json.prospectus emiten.detail.prospectus
+    json.additional_information emiten.detail.additional_information
     json.updated_at emiten.updated_at
   end
 end
