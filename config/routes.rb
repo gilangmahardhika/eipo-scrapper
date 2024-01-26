@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "index#index"
   get "/:code", to: "index#show"
+  get "/404" => "errors#not_found"
+  get "/500" => "errors#exception"
 end

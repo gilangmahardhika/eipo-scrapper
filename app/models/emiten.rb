@@ -6,6 +6,8 @@ class Emiten
   field :name, type: String
   field :eipo_id, type: Integer
   field :link, type: String
+  field :shared_lot, type: Integer
+  field :logo, type: String
   field :final_price, type: Integer
   field :status, type: String
 
