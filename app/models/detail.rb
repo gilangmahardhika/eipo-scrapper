@@ -14,5 +14,5 @@ class Detail
   field :underwriters, type: String
   field :code, type: String
 
-  embedded_in :detail
+  embedded_in :emiten
 end
