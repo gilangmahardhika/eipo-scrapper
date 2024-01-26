@@ -13,6 +13,7 @@ class Emiten
   field :updated_at, type: DateTime
 
   embeds_one :detail
+  embeds_one :offer_detail
 
   SCRAPPED_STATUS = ["Book Building", "Offering", "Allotment", "Pre-Effective"]
 

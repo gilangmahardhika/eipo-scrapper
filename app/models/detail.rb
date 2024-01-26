@@ -14,5 +14,19 @@ class Detail
   field :underwriters, type: String
   field :code, type: String
 
+  ## Offer
+  field :offering_start_date, type: Date
+  field :offering_end_date, type: Date
+  field :offering_price, type: Integer
+  field :allotment_date, type: Date
+  field :distribution_date, type: Date
+  field :listing_date, type: Date
+  field :prospectus, type: Object
+  field :additional_information, type: String
+  field :book_building_start_date, type: Date
+  field :book_building_end_date, type: Date
+  field :book_building_min_price, type: Integer
+  field :book_building_max_price, type: Integer
+
   embedded_in :emiten
 end
