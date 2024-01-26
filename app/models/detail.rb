@@ -11,7 +11,7 @@ class Detail
   field :website, type: String
   field :percentage_of_share, type: Integer
   field :participant_admin, type: String
-  field :underwriters, type: String
+  field :underwriters, type: Object
   field :code, type: String
 
   ## Offer
