@@ -18,6 +18,7 @@ json.data do
   json.book_building_end_date  @emiten.detail.book_building_start_date
   json.book_building_min_price @emiten.detail.book_building_min_price
   json.book_building_max_price @emiten.detail.book_building_max_price
+  json.shared_lot @emiten.shared_lot
   json.offering_start_date @emiten.detail.offering_start_date
   json.offering_end_date @emiten.detail.offering_end_date
   json.offering_price @emiten.detail.offering_price

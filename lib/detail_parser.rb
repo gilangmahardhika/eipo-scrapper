@@ -14,7 +14,7 @@ class DetailParser
   def initialize(html_data)
     @data = {}
     @html_data, @offer_data = html_data.search(".panel-body h5.nomargin"), html_data.search(".list-group")
-    # $html_data, $offer_data = @html_data, $offer_data
+    # $html_data, $offer_data = @html_data, @offer_data
   end
 
   def parse_detail_data
@@ -51,7 +51,7 @@ class DetailParser
         data << s.text
       end
     else
-      data << [@html_data[10].next.text]
+      data << @html_data[10].next.text
     end
     @data[:underwriters] = data
   end

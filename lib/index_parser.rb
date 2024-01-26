@@ -3,6 +3,7 @@ class IndexParser
   def initialize(html_data)
     @data = []
     @html_data = html_data.search("#ipo-list .list-view .row").children
+    $html_data = @html_data
   end
 
   def parse_index_data
@@ -21,7 +22,9 @@ class IndexParser
         eipo_id: eipo_id(@html_data[i]),
         link: link(@html_data[i]),
         status: status(@html_data[i]),
-        updated_at: Time.now
+        updated_at: Time.now,
+        shared_lot: shared_offers(@html_data[i]),
+        logo: logo(@html_data[i])
       }
     end
     @data
@@ -46,5 +49,13 @@ class IndexParser
 
     def link(div)
       div.search(".pricing-action/a").attr('href').value
+    end
+
+    def shared_offers(div)
+      div.search('.pricing-features ul li')[3].search('p').text.gsub(" Lot", "").gsub(",", "").to_i
+    end
+
+    def logo(div)
+      Rails.application.config.eipo_base_url + div.search('.img-list').attr("src").value
     end
 end

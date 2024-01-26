@@ -2,7 +2,6 @@ class Detail
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  field :shared_offered, type: Integer
   field :sector, type: String
   field :sub_sector, type: String
   field :line_of_business, type: String
