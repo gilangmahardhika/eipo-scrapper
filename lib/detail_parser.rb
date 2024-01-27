@@ -112,7 +112,7 @@ class DetailParser
     end
 
     def format_price(price)
-      price.gsub("IDR", "")[1..-1].to_i
+      price.gsub("IDR", "").gsub(",", "")[1..-1].to_i
     end
 
 end
