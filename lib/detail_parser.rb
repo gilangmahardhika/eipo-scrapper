@@ -73,7 +73,7 @@ class DetailParser
         @data[:additional_information] = "#{Rails.application.config.eipo_base_url}#{offer.search('p a').attr("href")}" # rescue nil
       when "Prospectus"
         @data[:prospectus] = offer.search("p a").map{|c| "#{Rails.application.config.eipo_base_url}#{c.attr("href")}"}
-      when "Allotment (Close)"
+      when "Allotment (Closed)"
         @data[:allotment_date] = offer.search('p').first.text
       when "Allotment"
         @data[:allotment_date] = offer.search('p').first.text
