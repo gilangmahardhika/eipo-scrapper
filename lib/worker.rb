@@ -15,7 +15,7 @@ class Worker
     end
 
     @browser = Capybara.current_session
-    @driver = $browser.driver.browser
+    @driver = @browser.driver.browser
   end
 
   def scrape(url)
