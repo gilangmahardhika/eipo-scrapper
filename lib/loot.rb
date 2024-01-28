@@ -11,8 +11,7 @@ class Loot
 
   def self.update_all_details
     Emiten.all.each do |e|
-      link = e.link
-      detail = DetailPage.new(link)
+      detail = DetailPage.new(e)
       detail.insert_to_db(detail.parse)
       sleep(0.5)
     end
@@ -20,8 +19,7 @@ class Loot
 
   def self.update_uncompleted
     Emiten.uncompleted.each do |e|
-      link = e.link
-      detail = DetailPage.new(link)
+      detail = DetailPage.new(e)
       detail.insert_to_db(detail.parse)
       sleep(0.5)
     end

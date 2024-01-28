@@ -18,6 +18,11 @@ class Emiten
 
   validates_uniqueness_of :code, :eipo_id
 
+  def scrape
+    detail = DetailPage.new(self)
+    detail.insert_to_db(detail.parse)
+  end
+
   def self.uncompleted
     where(:status.in => SCRAPPED_STATUS)
   end

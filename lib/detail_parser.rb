@@ -14,7 +14,7 @@ class DetailParser
   def initialize(html_data)
     @data = {}
     @html_data, @offer_data = html_data.search(".panel-body h5.nomargin"), html_data.search(".list-group")
-    # $html_data, $offer_data = @html_data, @offer_data
+    $html_data, $offer_data = @html_data, @offer_data
   end
 
   def parse_detail_data
@@ -66,17 +66,17 @@ class DetailParser
       when "Offering"
         build_offering(offer)
       when "Distribution"
-        build_distribution(offer)
+        build_listing_data(offer)
       when "Listing Date"
         build_listing_data(offer)
       when "Additional Information"
         @data[:additional_information] = "#{Rails.application.config.eipo_base_url}#{offer.search('p a').attr("href")}" # rescue nil
       when "Prospectus"
         @data[:prospectus] = offer.search("p a").map{|c| "#{Rails.application.config.eipo_base_url}#{c.attr("href")}"}
-      when "Allotment (Closed)"
-        @data[:allotment_date] = offer.search('p').first.text
+      when "Allotment (Closing)"
+        build_listing_data(offer)
       when "Allotment"
-        @data[:allotment_date] = offer.search('p').first.text
+        build_listing_data(offer)
       else
         nil
       end
@@ -86,7 +86,7 @@ class DetailParser
   private
     def build_book_building(offer)
       date = parse_interval_date(offer.search('p').first.text)
-      @data[:book_building_start_date], @data[:book_building_end_date] = date.first, date.last
+      @data[:book_building_start_date], @data[:book_building_end_date] = date.first.to_date, date.last.to_date
       price = offer.search('p').last.text.split(" - ")
       min_price, max_price = format_price(price.first), format_price(price.last)
       @data[:book_building_min_price], @data[:book_building_max_price] = min_price, max_price
@@ -94,17 +94,13 @@ class DetailParser
 
     def build_offering(offer)
       date = parse_interval_date(offer.search('p').first.text)
-      @data[:offering_start_date], @data[:offering_end_date] = date.first, date.last
+      @data[:offering_start_date], @data[:offering_end_date] = date.first.to_date, date.last.to_date
       price = format_price(offer.search('p').last.text)
       @data[:offering_price] = price
     end
 
-    def build_distribution(offer)
-      @data[:distribution_date] = offer.search('p').first.text
-    end
-
     def build_listing_data(offer)
-      @data[:listing_date] = offer.search('p').first.text
+      @data[:listing_date] = offer.search('p').first.text.to_date
     end
 
     def parse_interval_date(date)
