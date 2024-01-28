@@ -23,6 +23,6 @@ class Worker
   end
 
   def html_data
-    Nokogiri::HTML($driver.page_source)
+    Nokogiri::HTML(@driver.page_source)
   end
 end
