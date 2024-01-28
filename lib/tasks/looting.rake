@@ -15,6 +15,7 @@ namespace :looting do
       Loot.looting
       sleep 3600
       Loot.update_all_details
+      puts "details looted"
       sleep 3600
     end
   end
