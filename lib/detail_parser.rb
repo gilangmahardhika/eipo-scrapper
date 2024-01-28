@@ -1,20 +1,8 @@
-# field :shared_offered, type: Integer
-# field :sector, type: String
-# field :sub_sector, type: String
-# field :line_of_business, type: String
-# field :company_overview, type: String
-# field :address, type: String
-# field :website, type: String
-# field :percentage_of_share, type: Integer
-# field :participant_admin. type: String
-# field :underwriters, type: String
-# field :eipo_id, type: Integer
-
 class DetailParser
   def initialize(html_data)
     @data = {}
     @html_data, @offer_data = html_data.search(".panel-body h5.nomargin"), html_data.search(".list-group")
-    $html_data, $offer_data = @html_data, @offer_data
+    # $html_data, $offer_data = @html_data, @offer_data # For debugging purpose
   end
 
   def parse_detail_data
@@ -66,17 +54,17 @@ class DetailParser
       when "Offering"
         build_offering(offer)
       when "Distribution"
-        build_listing_data(offer)
+        @data[:distribution_date] = build_listing_data(offer)
       when "Listing Date"
-        build_listing_data(offer)
+        @data[:listing_date] = build_listing_data(offer)
       when "Additional Information"
         @data[:additional_information] = "#{Rails.application.config.eipo_base_url}#{offer.search('p a').attr("href")}" # rescue nil
       when "Prospectus"
         @data[:prospectus] = offer.search("p a").map{|c| "#{Rails.application.config.eipo_base_url}#{c.attr("href")}"}
       when "Allotment (Closing)"
-        build_listing_data(offer)
+        @data["allotment_date"] = build_listing_data(offer)
       when "Allotment"
-        build_listing_data(offer)
+        @data[:allotment_date] = build_listing_data(offer)
       else
         nil
       end
@@ -100,7 +88,7 @@ class DetailParser
     end
 
     def build_listing_data(offer)
-      @data[:listing_date] = offer.search('p').first.text.to_date
+      offer.search('p').first.text.to_date
     end
 
     def parse_interval_date(date)
