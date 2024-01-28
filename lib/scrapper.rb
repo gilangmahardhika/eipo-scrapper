@@ -6,11 +6,12 @@ class Scrapper
     else
       emiten
     end
-    @worker = Worker.new.scrape("#{Rails.application.config.eipo_base_url}#{url}")
+    @worker = Worker.new
+    @worker.scrape("#{Rails.application.config.eipo_base_url}#{url}")
   end
 
   def html_data
-    @html_data = Nokogiri::HTML($driver.page_source)
+    @html_data = @worker.html_data
   end
 
 end

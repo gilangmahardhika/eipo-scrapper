@@ -19,6 +19,10 @@ class Worker
   end
 
   def scrape(url)
-    @browser.visit(url)
+    @bvisit = @browser.visit(url)
+  end
+
+  def html_data
+    Nokogiri::HTML($driver.page_source)
   end
 end
