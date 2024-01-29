@@ -15,6 +15,7 @@ class Emiten
 
   SCRAPPED_STATUS = ["Book Building", "Offering", "Allotment", "Pre-Effective"]
 
+  default_scope -> { order(eipo_id: :desc) }
 
   validates_uniqueness_of :code, :eipo_id
 
