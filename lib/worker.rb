@@ -19,7 +19,7 @@ class Worker
   end
 
   def scrape(url)
-    @bvisit = @browser.visit(url)
+    @visit = @browser.visit(url)
   end
 
   def html_data
