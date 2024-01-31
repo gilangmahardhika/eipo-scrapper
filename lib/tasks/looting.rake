@@ -9,4 +9,15 @@ namespace :looting do
     Loot.update_all_details
   end
 
+  desc "Looting all"
+  task all: :environment do
+    loop do
+      Loot.looting
+      sleep 3600
+      Loot.update_all_details
+      puts "details looted"
+      sleep 3600
+    end
+  end
+
 end

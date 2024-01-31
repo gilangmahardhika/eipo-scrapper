@@ -7,17 +7,22 @@ class Worker
       Capybara::Selenium::Driver.new(app, browser: :chrome, http_client: client,
       options: Selenium::WebDriver::Chrome::Options.new(args: %w[no-sandbox skip-certificate-check]))
     end
+
     Capybara.javascript_driver = :chrome
     Capybara.configure do |config|
       config.default_max_wait_time = 120 # seconds
       config.default_driver = :selenium
     end
-    # Visit
-    $browser = Capybara.current_session
-    $driver = $browser.driver.browser
+
+    @browser = Capybara.current_session
+    @driver = @browser.driver.browser
   end
 
   def scrape(url)
-    $browser.visit(url)
+    @visit = @browser.visit(url)
+  end
+
+  def html_data
+    Nokogiri::HTML(@driver.page_source)
   end
 end

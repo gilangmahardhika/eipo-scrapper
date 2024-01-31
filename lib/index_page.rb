@@ -9,7 +9,7 @@ class IndexPage < Scrapper
       e = Emiten.where(code: emiten[:code]).first
       if e.present?
         e.update(emiten)
-        e.touch
+        # e.touch
       else
         Emiten.new(emiten).save
       end
