@@ -44,3 +44,4 @@ gem "capybara"
 gem "selenium-webdriver"
 gem 'kaminari-mongoid'
 gem 'jbuilder'
+gem 'bunny'

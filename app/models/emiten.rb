@@ -27,4 +27,35 @@ class Emiten
   def self.uncompleted
     where(:status.in => SCRAPPED_STATUS)
   end
+
+  def as_json
+    {
+      id:    self._id.to_s,
+      code:  self.code,
+      name:  self.name,
+      status:self.status,
+      sector:self.detail.sector,
+      sub_sector:self.detail.sub_sector,
+      line_of_business:self.detail.line_of_business,
+      company_overview:self.detail.company_overview,
+      website:self.detail.website,
+      percentage_of_share:self.detail.percentage_of_share,
+      participant_admin:self.detail.participant_admin,
+      underwriters:self.detail.underwriters,
+      updated_at:self.updated_at,
+      allotment_date: self.detail.allotment_date,
+      book_building_start_date: self.detail.book_building_start_date,
+      book_building_end_date: self.detail.book_building_start_date,
+      book_building_min_price:self.detail.book_building_min_price,
+      book_building_max_price:self.detail.book_building_max_price,
+      shared_lot:self.shared_lot,
+      offering_start_date:self.detail.offering_start_date,
+      offering_end_date:self.detail.offering_end_date,
+      offering_price:self.detail.offering_price,
+      distribution_date:self.detail.distribution_date,
+      listing_date:self.detail.listing_date,
+      prospectus:self.detail.prospectus,
+      additional_information:self.detail.additional_information,
+  }.to_json
+  end
 end
