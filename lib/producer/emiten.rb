@@ -12,9 +12,10 @@ class Producer::Emiten
   end
 
   def publish(data)
+    pp data
     q  = @ch.quorum_queue("emiten", durable: true, "x-queue-type" => "quorum", :exclusive => false, :auto_delete => false)
     # publish a message to the default exchange which then gets routed to this queue
-    q.publish(data, routing_key: "emiten", persistent: false)
+    q.publish(data, routing_key: "emiten", persistent: true)
     @ch.close
     # close the connection
     @conn.close
