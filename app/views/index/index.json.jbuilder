@@ -14,6 +14,5 @@ json.data do
     json.prospectus emiten.detail.prospectus
     json.additional_information emiten.detail.additional_information
     json.updated_at emiten.updated_at
-    json.current_time Time.now
   end
 end

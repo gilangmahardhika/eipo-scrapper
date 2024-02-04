@@ -18,7 +18,7 @@ set :deploy_to, '/var/www/eipo-scrapper'
 set :repository, 'git@github.com:gilangmahardhika/eipo-scrapper.git'
 set :branch, 'main'
 set :user, 'rdpuser'
-set :shared_dirs, fetch(:shared_dirs, []).push('config/credentials')
+set :shared_dirs, fetch(:shared_dirs, []).push('config/credentials', 'tmp/pids')
 # set :shared_paths, fetch(:shared_files, []).push('config/database.yml', 'config/credentials/production.key', 'config/credentials/production.key')
 # Optional settings:
 #   set :user, 'foobar'          # Username in the server to SSH to.
@@ -54,6 +54,10 @@ task :start do
   command "cd #{fetch(:deploy_to)}/current && RAILS_ENV=production bundle exec puma -q -e production -C ./config/puma.rb >> ./log/production.log"
 end
 
+task :phased_restart do
+  command "cd #{fetch(:deploy_to)}/shared/tmp/pids && pumactl phased-restart -p server.pid"
+end
+
 desc 'Deploys the current version to the server.'
 task :deploy do
   # uncomment this line to make sure you pushed your local branch to the remote origin
@@ -67,7 +71,7 @@ task :deploy do
     invoke :'deploy:cleanup'
 
     on :launch do
-      invoke :'puma:phased_restart'
+      invoke :'phased_restart'
     end
   end
 
