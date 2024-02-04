@@ -46,4 +46,5 @@ gem 'kaminari-mongoid'
 gem 'jbuilder'
 gem 'bunny'
 gem 'mina'
-gem 'mina-puma', require: false
+gem 'mina-puma'
+gem 'puma-daemon'

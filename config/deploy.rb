@@ -49,6 +49,10 @@ task :setup do
   # command %{gem install bundler}
 end
 
+task :start do
+  command "cd #{fetch(:deploy_to)}/current && RAILS_ENV=production bundle exec puma -q -e production -C config/puma.rb -d"
+end
+
 desc 'Deploys the current version to the server.'
 task :deploy do
   # uncomment this line to make sure you pushed your local branch to the remote origin
