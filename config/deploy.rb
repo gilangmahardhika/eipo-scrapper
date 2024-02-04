@@ -55,7 +55,7 @@ task :start do
 end
 
 task :phased_restart do
-  command "cd #{fetch(:deploy_to)}/shared/tmp/pids && pumactl phased-restart -p server.pid"
+  command "cd #{fetch(:deploy_to)}/current && pumactl phased-restart -p server.pid"
 end
 
 desc 'Deploys the current version to the server.'
@@ -71,7 +71,7 @@ task :deploy do
     invoke :'deploy:cleanup'
 
     on :launch do
-      invoke :'phased_restart'
+      invoke :'puma:phased_restart'
     end
   end
 
