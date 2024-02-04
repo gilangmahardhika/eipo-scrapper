@@ -51,11 +51,15 @@ task :setup do
 end
 
 task :start do
-  command "cd #{fetch(:deploy_to)}/current && RAILS_ENV=production bundle exec puma -q -e production -C ./config/puma.rb >> ./log/production.log"
+  command "cd #{fetch(:deploy_to)}/current && RAILS_ENV=production bundle exec puma -q -e production -C ./config/puma.rb >> ./log/production.log &"
 end
 
 task :phased_restart do
-  command "cd #{fetch(:deploy_to)}/current && bundle exec pumactl phased-restart -p puma.pid"
+  command "cd #{fetch(:deploy_to)}/current && bundle exec pumactl phased-restart -p #{fetch(:deploy_to)}/shared/tmp/pids/puma.pid"
+end
+
+task :stop do
+  command "cd #{fetch(:deploy_to)}/current && bundle exec pumactl stop -p #{fetch(:deploy_to)}/shared/tmp/pids/puma.pid"
 end
 
 desc 'Deploys the current version to the server.'
