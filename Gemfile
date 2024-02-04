@@ -6,7 +6,7 @@ ruby "3.3.0"
 gem "rails", "7.1.3"
 
 # Use the Puma web server [https://github.com/puma/puma]
-gem "puma", "6.4.2"
+# gem "puma", "6.4.2"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
@@ -47,5 +47,5 @@ gem 'jbuilder'
 gem 'bunny'
 gem 'mina'
 gem 'mina-puma'
-gem 'puma-daemon'
-# gem 'puma', '5.6.8'
+# gem 'puma-daemon'
+gem 'puma', '5.6.8'
