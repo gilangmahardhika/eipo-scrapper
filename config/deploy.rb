@@ -18,7 +18,8 @@ set :deploy_to, '/var/www/eipo-scrapper'
 set :repository, 'git@github.com:gilangmahardhika/eipo-scrapper.git'
 set :branch, 'main'
 set :user, 'rdpuser'
-
+set :shared_dirs, fetch(:shared_dirs, []).push('config/credentials')
+# set :shared_paths, fetch(:shared_files, []).push('config/database.yml', 'config/credentials/production.key', 'config/credentials/production.key')
 # Optional settings:
 #   set :user, 'foobar'          # Username in the server to SSH to.
 #   set :port, '30000'           # SSH port number.
@@ -50,7 +51,7 @@ task :setup do
 end
 
 task :start do
-  command "cd #{fetch(:deploy_to)}/current && RAILS_ENV=production bundle exec puma -q -e production -C config/puma.rb -d"
+  command "cd #{fetch(:deploy_to)}/current && RAILS_ENV=production bundle exec puma -q -e production -C ./config/puma.rb >> ./log/production.log"
 end
 
 desc 'Deploys the current version to the server.'
