@@ -4,7 +4,6 @@ json.data do
   json.name   @emiten.name
   json.status @emiten.status
   json.sector @emiten.detail.sector
-  json.sector @emiten.detail.sector
   json.sub_sector @emiten.detail.sub_sector
   json.line_of_business @emiten.detail.line_of_business
   json.company_overview @emiten.detail.company_overview
