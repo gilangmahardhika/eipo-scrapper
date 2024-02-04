@@ -1,5 +1,5 @@
 class Loot
-  MAX_PAGE = 17
+  MAX_PAGE = 8
 
   def self.looting
     (1..MAX_PAGE).each do |page|
