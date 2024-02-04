@@ -4,7 +4,11 @@ class Producer::Emiten
 
   def initialize
     # Start a communication session with RabbitMQ
-    @conn = Bunny.new
+    @conn = Bunny.new(
+      user: ENV["RABBIT_USER"],
+      pass: ENV["RABBIT_PASS"],
+      vhost: ENV["RABBIT_VHOST"]
+    )
     @conn.start
 
     # open a channel

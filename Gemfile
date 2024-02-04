@@ -45,3 +45,5 @@ gem "selenium-webdriver"
 gem 'kaminari-mongoid'
 gem 'jbuilder'
 gem 'bunny'
+gem 'mina'
+gem 'mina-puma', require: false
